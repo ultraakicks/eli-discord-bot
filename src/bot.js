@@ -11,25 +11,35 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}`)
 })
 
+const url = process.env.DISCORD_COMMAND_URL_ID
+const discord_url = 'https://discord.com/'
+
 client.on('messageCreate', (message) => {
-    let channel = message.channel;
+    let channel = message.channel
 
-    if(message.content == '.start_stream')
-    channel.createInvite({unique: true, maxAge: 21600})
-    .then(invite => {
-        const discord_link = 'https://discord.com/' + invite.code
-        const url = 'https://api.nightbot.tv/1/commands/5e9cb8960da0ca095b5cdf84'
-        const data = { message : 'Updated Link' + discord_link}
-        const headers = { Authorization: process.env.NIGHT_BOT_ACCESS_TOKEN}
+    if (message.content == '.start_stream') {
+        channel.createInvite({unique: true, maxAge: 21600})
+            .then(invite => {
+                let discord_link = discord_url + invite.code
+                let data = {
+                    message: 'Updated Link ' + discord_link
+                }
+                let settings = {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': process.env.NIGHT_BOT_ACCESS_TOKEN
+                    },
+                    body: JSON.stringify(data),
+                }
 
-        fetch(url, { method: 'POST', headers: headers, body: data})
-            .then(response => response.json())
-            .then(result => {
-                console.log('Success:', result);
-    })
-})
-    if (message.content == '.end_stream'){
-        console.log('Ending stream...')s
+                fetch(url, settings)
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log('Success:', result)
+                    })
+            })
+            message.reply("The command !discord as been successfully updated with the Nightbot API!")
     }
 })
 
