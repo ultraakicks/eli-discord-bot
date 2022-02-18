@@ -39,7 +39,7 @@ client.on('messageCreate', (message) => {
                         console.log('Success:', result)
                     })
             })
-            message.auther.send("The command !discord as been successfully updated with the Nightbot API!")
+            message.author.send("The command !discord as been successfully updated with the Nightbot API!")
             
     }
 })
