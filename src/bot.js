@@ -4,7 +4,11 @@ import Discord from 'discord.js'
 
 dotenv.config()
 
-const client = new Discord.Client({intents: ['GUILDS','GUILD_MESSAGES']})
+const client = new Discord.Client({
+    intents: [
+        'GUILDS',
+        'GUILD_MESSAGES'
+    ]})
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}`)
@@ -21,7 +25,8 @@ client.on('messageCreate', (message) => {
             .then(invite => {
                 let discord_link = discord_url + invite.code
                 let data = {
-                    message: 'Updated Link ' + discord_link
+                    message: 'Join Elis 1-E Class Here ' + discord_link + ' ! You must be of the age \
+                     of 13 or above to abide by Discord ToS.Updated Link '
                 }
                 let settings = {
                     method: 'PUT',
@@ -60,7 +65,5 @@ client.on('messageCreate', (message) => {
                 console.log('Success:', result)
             })
     }
-
 })
-
 client.login(process.env.DISCORD_BOT_TOKEN)
