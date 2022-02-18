@@ -1,4 +1,3 @@
-
 import dotenv from 'dotenv'
 import fetch from 'node-fetch'
 import Discord from 'discord.js'
@@ -42,6 +41,26 @@ client.on('messageCreate', (message) => {
             message.author.send("The command !discord as been successfully updated with the Nightbot API!")
             
     }
+    if (message.content == '.end_stream') {
+        let data = {
+            message: 'Woo! You missed it. Come back for the next stream to get the link to \
+            Elis Class 1-E Discord Server!'
+        }
+        let settings = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': process.env.NIGHT_BOT_ACCESS_TOKEN
+            },
+            body: JSON.stringify(data),
+        }
+        fetch(url, settings)
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result)
+            })
+    }
+
 })
 
 client.login(process.env.DISCORD_BOT_TOKEN)
