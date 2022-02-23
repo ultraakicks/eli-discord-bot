@@ -15,7 +15,7 @@ client.on('ready', () => {
 })
 
 const url = process.env.DISCORD_COMMAND_URL_ID
-const discord_url = 'https://discord.com/'
+const discord_url = 'https://discord.gg/'
 
 client.on('messageCreate', (message) => {
     let channel = message.channel
