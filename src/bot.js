@@ -63,6 +63,7 @@ client.on('messageCreate', (message) => {
             .then(result => {
                 console.log('Success:', result)
             })
+            message.author.send("The command !discord as been successfully updated with the Nightbot API!")
     }
 })
 client.login(process.env.DISCORD_BOT_TOKEN)
