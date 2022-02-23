@@ -27,7 +27,7 @@ client.on('messageCreate', (message) => {
                 let data = {
                     message: 'Join Elis 1-E Class Here ' + discord_link + ' ! You must be of the age of 13 or above to abide by Discord ToS. '
                 }
-                let settings_put = {
+                let settings = {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -36,33 +36,19 @@ client.on('messageCreate', (message) => {
                     body: JSON.stringify(data),
                 }
 
-                let settings_get = {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': process.env.NIGHT_BOT_ACCESS_TOKEN
-                    }
-                }
-                fetch(url, settings_put)
+                fetch(url, settings)
                     .then(response => response.json())
                     .then(result => {
                         console.log('Success:', result)
                     })
-
-                fetch(url, settings_get)
-                    .then(response => response.json())
-                    .then(result => {
-                        console.log('Success:', result)
-                    })
-                var get_stream_start = JSON.parse(result)
-                console.log("get_stream_start: " + get_stream_start)
             })
-            message.author.send("The command !discord as been successfully updated with the Nightbot API!")
+            message.reply("The command !discord as been successfully updated with the Nightbot API!")
     }
     if (message.content == '.end_stream') {
         let data = {
             message: 'Woo! You missed it. Come back for the next stream to get the link to Elis Class 1-E Discord Server!'
         }
-        let settings_put = {
+        let settings = {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -70,12 +56,12 @@ client.on('messageCreate', (message) => {
             },
             body: JSON.stringify(data),
         }
-        fetch(url, settings_put)
+        fetch(url, settings)
             .then(response => response.json())
             .then(result => {
                 console.log('Success:', result)
             })
-            message.author.send("The command !discord as been successfully updated with the Nightbot API!")
+            message.reply("The command !discord as been successfully updated with the Nightbot API!")
     }
 })
 client.login(process.env.DISCORD_BOT_TOKEN)
