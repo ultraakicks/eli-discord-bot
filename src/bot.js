@@ -25,8 +25,7 @@ client.on('messageCreate', (message) => {
             .then(invite => {
                 let discord_link = discord_url + invite.code
                 let data = {
-                    message: 'Join Elis 1-E Class Here ' + discord_link + ' ! You must be of the age \
-                     of 13 or above to abide by Discord ToS.Updated Link '
+                    message: 'Join Elis 1-E Class Here ' + discord_link + ' ! You must be of the age of 13 or above to abide by Discord ToS. '
                 }
                 let settings = {
                     method: 'PUT',
