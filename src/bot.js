@@ -43,12 +43,10 @@ client.on('messageCreate', (message) => {
                     })
             })
             message.author.send("The command !discord as been successfully updated with the Nightbot API!")
-            
     }
     if (message.content == '.end_stream') {
         let data = {
-            message: 'Woo! You missed it. Come back for the next stream to get the link to \
-            Elis Class 1-E Discord Server!'
+            message: 'Woo! You missed it. Come back for the next stream to get the link to Elis Class 1-E Discord Server!'
         }
         let settings = {
             method: 'PUT',
