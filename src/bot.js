@@ -17,13 +17,13 @@ client.on('ready', () => {
 const url = process.env.DISCORD_COMMAND_URL_ID
 const discord_url = 'https://discord.gg/'
 
-client.on('interactionCreate', (message) => {
+client.on('interactionCreate', (interaction) => {
 
     if (!interaction.isCommand()) return;
 
 	const { commandName } = interaction;
 
-    let channel = message.channel
+    //let channel = message.channel
 
     if (commandName === 'start') {
         channel.createInvite({unique: true, maxAge: 21600})
@@ -47,7 +47,7 @@ client.on('interactionCreate', (message) => {
                         console.log('Success:', result)
                     })
             })
-            await interaction.reply("The command !discord as been successfully updated with the Nightbot API!")
+            interaction.reply("The command !discord as been successfully updated with the Nightbot API!")
     }
     if (commandName === 'end') {
         let data = {
@@ -66,11 +66,11 @@ client.on('interactionCreate', (message) => {
             .then(result => {
                 console.log('Success:', result)
             })
-            await interaction.reply("The command !discord as been successfully updated with the Nightbot API!")
+            interaction.reply("The command !discord as been successfully updated with the Nightbot API!")
     }
 
     if (commandName === 'ping') {
-		await interaction.reply('Pong!');
+		interaction.reply('Pong!');
     }
 })
 client.login(process.env.DISCORD_BOT_TOKEN)
