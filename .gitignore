@@ -3,4 +3,3 @@ node_modules
 
 # Environment File
 .env
-config.json
