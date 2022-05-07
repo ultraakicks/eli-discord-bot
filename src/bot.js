@@ -17,10 +17,15 @@ client.on('ready', () => {
 const url = process.env.DISCORD_COMMAND_URL_ID
 const discord_url = 'https://discord.gg/'
 
-client.on('messageCreate', (message) => {
+client.on('interactionCreate', (message) => {
+
+    if (!interaction.isCommand()) return;
+
+	const { commandName } = interaction;
+
     let channel = message.channel
 
-    if (message.content == '.start_stream') {
+    if (commandName === 'start') {
         channel.createInvite({unique: true, maxAge: 21600})
             .then(invite => {
                 let discord_link = discord_url + invite.code
@@ -42,9 +47,9 @@ client.on('messageCreate', (message) => {
                         console.log('Success:', result)
                     })
             })
-            message.reply("The command !discord as been successfully updated with the Nightbot API!")
+            await interaction.reply("The command !discord as been successfully updated with the Nightbot API!")
     }
-    if (message.content == '.end_stream') {
+    if (commandName === 'end') {
         let data = {
             message: 'Woo! You missed it. Come back for the next stream to get the link to Elis Class 1-E Discord Server!'
         }
@@ -61,7 +66,11 @@ client.on('messageCreate', (message) => {
             .then(result => {
                 console.log('Success:', result)
             })
-            message.reply("The command !discord as been successfully updated with the Nightbot API!")
+            await interaction.reply("The command !discord as been successfully updated with the Nightbot API!")
+    }
+
+    if (commandName === 'ping') {
+		await interaction.reply('Pong!');
     }
 })
 client.login(process.env.DISCORD_BOT_TOKEN)
